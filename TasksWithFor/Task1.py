@@ -1,6 +1,6 @@
 passengerIds = []
 
-for passengers in range(11):
+for passengers in range(10):
     while True:
         try:
             id = int(input("Введите номер пассажира: "))
