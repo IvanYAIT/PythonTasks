@@ -1,5 +1,3 @@
-import random
-
 while True:
     userInput = input("Введите последовательность: ")
     strSequence = userInput.split(' ')
