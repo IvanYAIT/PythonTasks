@@ -7,7 +7,7 @@ while True:
             number = int(string)
             numSequence.append(number)
         except:
-            number = None
+            numSequence = None
             break
     
     if(numSequence is not None):
