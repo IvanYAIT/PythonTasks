@@ -32,25 +32,34 @@ while True:
     except:
         print("Это не число")
 
-print("Введите номер действия: \n",
+
+userInput = ""
+while True:
+    print("Введите номер действия: \n",
         "1 - сумма цифр \n",
         "2 - максимальная цифра \n",
         "3 - минимальная цифра")
 
-while True:
-    try:
-        userInput = int(input())
+    while True:
+        try:
+            userInput = input()
+            if(userInput  == "exit"):
+                break
 
-        if(userInput >= 1 and userInput <= 3):
-            break
+            command = int(userInput)
+            if(command >= 1 and command <= 3):
+                break
 
-        print("Введен неправильная команда")
-    except:
-        print("Это не число")
+            print("Введен неправильная команда")
+        except:
+            print("Это не число")
 
-if (userInput == 1):
-    print(f"Сумма цифр: {sum_0f_numbers(userNumber)}")
-elif (userInput == 2):
-    print(f"Максимальная цифра: {max_number(userNumber)}")
-elif (userInput == 3):
-    print(f"Минимальная цифра: {min_number(userNumber)}") 
+    if(userInput  == "exit"):
+        break
+
+    if (command == 1):
+        print(f"Сумма цифр: {sum_0f_numbers(userNumber)}")
+    elif (command == 2):
+        print(f"Максимальная цифра: {max_number(userNumber)}")
+    elif (command == 3):
+        print(f"Минимальная цифра: {min_number(userNumber)}") 
