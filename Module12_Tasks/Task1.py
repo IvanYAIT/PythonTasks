@@ -1,4 +1,4 @@
-def Sum(number):
+def sum(number):
     result = 0
     for num in range(1, number+1):
         result += num
@@ -16,4 +16,4 @@ while True:
         except:
             print("Это не число")
 
-print(f"Я знаю, что сумма чисел от 1 до {userNumber} равна {Sum(userNumber)}")
+print(f"Я знаю, что сумма чисел от 1 до {userNumber} равна {sum(userNumber)}")
