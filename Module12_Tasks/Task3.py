@@ -23,9 +23,9 @@ def min_number(number):
 
 while True:
     try:
-        userNumber = int(input("Введите число: "))
+        user_number = int(input("Введите число: "))
 
-        if(userNumber >= 0):
+        if(user_number >= 0):
             break
 
         print("Число должно быть больше 0")
@@ -33,7 +33,7 @@ while True:
         print("Это не число")
 
 
-userInput = ""
+user_input = ""
 while True:
     print("Введите номер действия: \n",
         "1 - сумма цифр \n",
@@ -42,11 +42,11 @@ while True:
 
     while True:
         try:
-            userInput = input()
-            if(userInput  == "exit"):
+            user_input = input()
+            if(user_input  == "exit"):
                 break
 
-            command = int(userInput)
+            command = int(user_input)
             if(command >= 1 and command <= 3):
                 break
 
@@ -54,12 +54,12 @@ while True:
         except:
             print("Это не число")
 
-    if(userInput  == "exit"):
+    if(user_input  == "exit"):
         break
 
     if (command == 1):
-        print(f"Сумма цифр: {sum_0f_numbers(userNumber)}")
+        print(f"Сумма цифр: {sum_0f_numbers(user_number)}")
     elif (command == 2):
-        print(f"Максимальная цифра: {max_number(userNumber)}")
+        print(f"Максимальная цифра: {max_number(user_number)}")
     elif (command == 3):
-        print(f"Минимальная цифра: {min_number(userNumber)}") 
+        print(f"Минимальная цифра: {min_number(user_number)}") 

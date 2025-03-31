@@ -24,16 +24,16 @@ def count_letters(text):
 
             print("Это не буква")
     
-    numberCount = 0
-    letterCount = 0
+    number_count = 0
+    letter_count = 0
 
     for char in text:
         if(char == number):
-            numberCount += 1
+            number_count += 1
         elif(char == letter):
-            letterCount += 1
+            letter_count += 1
     
-    print(f"Количество цифр {number}: {numberCount}\n", f"Количество букв {letter}: {letterCount}")
+    print(f"Количество цифр {number}: {number_count}\n", f"Количество букв {letter}: {letter_count}")
 
-userText = input("Введите текст: ")
-count_letters(userText)
+user_text = input("Введите текст: ")
+count_letters(user_text)

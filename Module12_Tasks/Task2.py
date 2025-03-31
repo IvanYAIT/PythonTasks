@@ -1,12 +1,12 @@
 def test():
     while True:
         try:
-            userNumber = int(input("Введите число: "))
+            user_number = int(input("Введите число: "))
             break
         except:
             print("Это не число")
     
-    if(userNumber >= 0):
+    if(user_number >= 0):
         positive()
     else:
         negative()

@@ -1,24 +1,24 @@
 import random as rnd
 
-def rock_paper_scissors(userChoice):
-    listOfChoice = ["камень", "ножницы", "бумага"]
-    choice = rnd.randint(0, len(listOfChoice))
+def rock_paper_scissors(user_choice):
+    list_of_choice = ["камень", "ножницы", "бумага"]
+    choice = rnd.randint(0, len(list_of_choice))
 
-    if (userChoice.lower() == listOfChoice[choice]):
+    if (user_choice.lower() == list_of_choice[choice]):
         print("Ничья")
-    elif (userChoice.lower() == "ножницы" and listOfChoice[choice] == "бумага"
-          or userChoice.lower() == "камень" and listOfChoice[choice] == "ножницы"
-          or userChoice.lower() == "бумага" and listOfChoice[choice] == "камень"):
+    elif (user_choice.lower() == "ножницы" and list_of_choice[choice] == "бумага"
+          or user_choice.lower() == "камень" and list_of_choice[choice] == "ножницы"
+          or user_choice.lower() == "бумага" and list_of_choice[choice] == "камень"):
         print("Ты выиграл!!!")
     else:
         print("Ты проиграл(")
 
-def guess_number(number, hiddenNumber):
-    if(number == hiddenNumber):
+def guess_number(number, hidden_number):
+    if(number == hidden_number):
         return True
-    elif(number > hiddenNumber):
+    elif(number > hidden_number):
         print(f"Загадонное число меньше {number}")
-    elif(number < hiddenNumber):
+    elif(number < hidden_number):
         print(f"Загадонное число больше {number}")
     return False
 
@@ -29,11 +29,11 @@ while True:
 
     while True:
         try:
-            userInput = input()
-            if(userInput.lower() == "exit" or userInput.lower() == "выход"):
+            user_input = input()
+            if(user_input.lower() == "exit" or user_input.lower() == "выход"):
                 break
 
-            command = int(userInput)
+            command = int(user_input)
             if(command >= 1 and command <= 2):
                 break
 
@@ -41,33 +41,33 @@ while True:
         except:
             print("Это не число")
     
-    if(userInput.lower() == "exit" or userInput.lower() == "выход"):
+    if(user_input.lower() == "exit" or user_input.lower() == "выход"):
         break
 
     if(command == 1):
-        userChoice = ""
+        user_choice = ""
         while True:
-            userChoice = input("Выберите камень, ножницы или бумагу: ")
-            print(userChoice.lower())
-            if(userChoice.lower() == "камень" or userChoice.lower() == "ножницы" or userChoice.lower() == "бумага"):
+            user_choice = input("Выберите камень, ножницы или бумагу: ")
+            print(user_choice.lower())
+            if(user_choice.lower() == "камень" or user_choice.lower() == "ножницы" or user_choice.lower() == "бумага"):
                 break
 
             print("Неправильная команда")
-        rock_paper_scissors(userChoice)
+        rock_paper_scissors(user_choice)
     elif (command == 2):
-        hiddenNumber = rnd.randint(1, 1001)
+        hidden_number = rnd.randint(1, 1001)
         while True:
             while True:
                 try:
-                    userNumber = int(input("Введите число: "))
+                    user_number = int(input("Введите число: "))
 
-                    if(userNumber > 0):
+                    if(user_number > 0):
                         break
 
                     print("Загадонное число больше 0")
                 except:
                     print("Это не число")
 
-            if(guess_number(userNumber, hiddenNumber)):
-                print(f"Ты угадал это число {hiddenNumber}")
+            if(guess_number(user_number, hidden_number)):
+                print(f"Ты угадал это число {hidden_number}")
                 break

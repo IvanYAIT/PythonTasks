@@ -7,13 +7,13 @@ def sum(number):
 
 while True:
         try:
-            userNumber = int(input("Введите число: "))
+            user_number = int(input("Введите число: "))
 
-            if(userNumber > 0):
+            if(user_number > 0):
                 break
 
             print("Число должно быть больше 0")
         except:
             print("Это не число")
 
-print(f"Я знаю, что сумма чисел от 1 до {userNumber} равна {sum(userNumber)}")
+print(f"Я знаю, что сумма чисел от 1 до {user_number} равна {sum(user_number)}")
