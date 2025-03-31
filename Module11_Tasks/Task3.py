@@ -1,23 +1,23 @@
 import time
 
-fileSizeInMB = None
-MBPerSecond = None
+file_size_in_mb = None
+mb_per_second = None
 
 while True:
     try:
-        if(fileSizeInMB is None):
-            fileSizeInMB = int(input("Укажите размер файла для скачивания: "))
+        if(file_size_in_mb is None):
+            file_size_in_mb = int(input("Укажите размер файла для скачивания: "))
         
-        if(fileSizeInMB <= 0):
-            fileSizeInMB = None
+        if(file_size_in_mb <= 0):
+            file_size_in_mb = None
             print("Размер файла не может быть меньше или равен нулю")
             continue
 
-        if(MBPerSecond is None):
-            MBPerSecond = int(input("Какова скорость вашего соединения? "))
+        if(mb_per_second is None):
+            mb_per_second = int(input("Какова скорость вашего соединения? "))
 
-        if(MBPerSecond <= 0):
-            MBPerSecond = None
+        if(mb_per_second <= 0):
+            mb_per_second = None
             print("Скорость интернета не может быть меньше или равен нулю")
             continue
 
@@ -25,15 +25,15 @@ while True:
     except:
         print("Некоторые данные введены неправильно")
 
-currentDownloadSize = 0
-secondsPassed = 0
+current_download_size = 0
+seconds_passed = 0
 
-while currentDownloadSize < fileSizeInMB:
-    secondsPassed += 1
-    currentDownloadSize += MBPerSecond
+while current_download_size < file_size_in_mb:
+    seconds_passed += 1
+    current_download_size += mb_per_second
     
-    if(currentDownloadSize >= fileSizeInMB):
-        currentDownloadSize = fileSizeInMB
+    if(current_download_size >= file_size_in_mb):
+        current_download_size = file_size_in_mb
     
-    print(f" Прошло {secondsPassed} сек. Скачано {currentDownloadSize} из {fileSizeInMB} Мб ({int((currentDownloadSize / fileSizeInMB)*100)}%)")
+    print(f" Прошло {seconds_passed} сек. Скачано {current_download_size} из {file_size_in_mb} Мб ({int((current_download_size / file_size_in_mb)*100)}%)")
     time.sleep(1)

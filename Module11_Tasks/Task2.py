@@ -2,27 +2,27 @@ import math
 
 while True:
     try:
-        numCount = int(input("Введите кол-во чисел: "))
+        num_count = int(input("Введите кол-во чисел: "))
 
-        if(numCount > 0):
+        if(num_count > 0):
             break
         
         print("Чисел должна быть больше 0")
     except:
         print("Это не число")
 
-for _ in range(numCount):
+for _ in range(num_count):
     while True:
         try:
-            currentNumber = float(input("Введите число: "))
+            current_number = float(input("Введите число: "))
 
-            if(currentNumber > 0):
-                currentNumber = math.ceil(currentNumber)
-                print(f"x = {currentNumber} log(x) = {math.log(currentNumber)}")
+            if(current_number > 0):
+                current_number = math.ceil(current_number)
+                print(f"x = {current_number} log(x) = {math.log(current_number)}")
                 break
-            elif (currentNumber < 0):
-                currentNumber = math.floor(currentNumber)
-                print(f"x = {currentNumber} exp(x) = {math.exp(currentNumber)}")
+            elif (current_number < 0):
+                current_number = math.floor(current_number)
+                print(f"x = {current_number} exp(x) = {math.exp(current_number)}")
                 break
             else:
                 print("Число не должно быть равно 0")
