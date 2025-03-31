@@ -1,7 +1,7 @@
 PERCENTAGE_AMPLITUDE_ATTENUATION = 8.4 / 100
 
 amplitude = None
-stopAmplitude = None
+stop_amplitude = None
 
 while True:
     try:
@@ -13,11 +13,11 @@ while True:
             print("Амплитуда должна быть больше 0")
             continue
 
-        if(stopAmplitude is None):
-            stopAmplitude = float(input("Введите амплитуду остановки: "))
+        if(stop_amplitude is None):
+            stop_amplitude = float(input("Введите амплитуду остановки: "))
 
-        if(stopAmplitude <= 0):
-            stopAmplitude = None
+        if(stop_amplitude <= 0):
+            stop_amplitude = None
             print("Амплитуда должна быть больше 0")
             continue
 
@@ -26,7 +26,7 @@ while True:
         print("Это не число")
 
 cycles = 0
-while amplitude > stopAmplitude:
+while amplitude > stop_amplitude:
     cycles += 1
     amplitude -= amplitude * PERCENTAGE_AMPLITUDE_ATTENUATION
 

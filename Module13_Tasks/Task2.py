@@ -6,14 +6,14 @@ def maximum_of_two(num1, num2):
 def maximum_of_three(num1, num2, num3):
     return maximum_of_two(num1, maximum_of_two(num2, num3))
 
-userNumbers = []
+user_numbers = []
 while True:
     try:
-        userNumber = int(input("Введите число: "))
-        userNumbers.append(userNumber)
-        if(len(userNumbers) == 3):
+        user_number = int(input("Введите число: "))
+        user_numbers.append(user_number)
+        if(len(user_numbers) == 3):
             break
     except:
         print("Это не число")
 
-print(f"Самое большое число: {maximum_of_three(userNumbers[0], userNumbers[1], userNumbers[2])}")
+print(f"Самое большое число: {maximum_of_three(user_numbers[0], user_numbers[1], user_numbers[2])}")
