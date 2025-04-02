@@ -2,7 +2,9 @@ def count_letters(text):
     while True:
         try:
             number = input("Какую цифру ищем? ")
-            int(number)
+            if(not number.isnumeric()):
+                raise ValueError()
+            
             if(len(number) != 1):
                 raise 
 
@@ -16,7 +18,9 @@ def count_letters(text):
     while True:
         try:
             letter = input("Какую букву ищём? ")
-            int(letter)
+            if(number.isnumeric()):
+                raise ValueError()
+            
             print("Это не буква")
         except:
             if(len(letter) == 1):
