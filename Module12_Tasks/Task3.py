@@ -1,3 +1,8 @@
+import os, sys
+sys.path.insert(1, os.path.join(sys.path[0], '../Services'))
+
+from UserInput import *
+
 def sum_0f_numbers(number):
     result = 0
     for num in str(number):
@@ -21,17 +26,7 @@ def min_number(number):
     
     return result
 
-while True:
-    try:
-        user_number = int(input("Введите число: "))
-
-        if(user_number >= 0):
-            break
-
-        print("Число должно быть больше 0")
-    except:
-        print("Это не число")
-
+user_number = get_user_positive_number("int")
 
 user_input = ""
 while True:
@@ -54,7 +49,7 @@ while True:
         except:
             print("Это не число")
 
-    if(user_input  == "exit"):
+    if(user_input == "exit"):
         break
 
     if (command == 1):

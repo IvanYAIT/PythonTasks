@@ -1,3 +1,8 @@
+import os, sys
+sys.path.insert(1, os.path.join(sys.path[0], '../Services'))
+
+from UserInput import *
+
 def positive():
     print("Положительное")
 
@@ -5,12 +10,7 @@ def negative():
     print("Отрицательное")
 
 def test():
-    while True:
-        try:
-            user_number = int(input("Введите число: "))
-            break
-        except:
-            print("Это не число")
+    user_number = get_user_any_number("int")
     
     if(user_number >= 0):
         positive()
