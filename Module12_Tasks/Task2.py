@@ -1,3 +1,9 @@
+def positive():
+    print("Положительное")
+
+def negative():
+    print("Отрицательное")
+
 def test():
     while True:
         try:
@@ -10,11 +16,5 @@ def test():
         positive()
     else:
         negative()
-
-def positive():
-    print("Положительное")
-
-def negative():
-    print("Отрицательное")
 
 test()
