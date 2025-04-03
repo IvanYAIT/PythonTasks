@@ -1,4 +1,38 @@
 import random as rnd
+import os, sys
+sys.path.insert(1, os.path.join(sys.path[0], '../Services'))
+
+from UserInput import *
+
+@check_input
+def get_command():
+    user_input = input()
+    if(user_input.lower() == "exit" or user_input.lower() == "выход"):
+        return user_input
+
+    command = int(user_input)
+    if(command < 1 or command > 2):
+        raise ValueError
+
+    return command
+
+@check_input
+def get_user_choice():
+    user_choice = input("Выберите камень, ножницы или бумагу: ")
+
+    if(user_choice.lower() != "камень" and user_choice.lower() != "ножницы" and user_choice.lower() != "бумага"):
+        raise
+    
+    return user_choice
+
+@check_input
+def get_user_number():
+    user_number = int(input("Введите число: "))
+
+    if(user_number < 0):
+        raise ValueError
+    
+    return user_number
 
 def rock_paper_scissors(user_choice):
     list_of_choice = ["камень", "ножницы", "бумага"]
@@ -27,46 +61,20 @@ while True:
           "1 - Камень, ножницы, бумага \n", 
           "2 - Угадай число")
 
-    while True:
-        try:
-            user_input = input()
-            if(user_input.lower() == "exit" or user_input.lower() == "выход"):
-                break
-
-            command = int(user_input)
-            if(command >= 1 and command <= 2):
-                break
-
-            print("Введен неправильная команда")
-        except:
-            print("Это не число")
+    command = get_command()
     
-    if(user_input.lower() == "exit" or user_input.lower() == "выход"):
+    if(str(command).lower() == "exit" or str(command).lower() == "выход"):
         break
 
     if(command == 1):
-        user_choice = ""
-        while True:
-            user_choice = input("Выберите камень, ножницы или бумагу: ")
-            print(user_choice.lower())
-            if(user_choice.lower() == "камень" or user_choice.lower() == "ножницы" or user_choice.lower() == "бумага"):
-                break
+        user_choice = get_user_choice()
 
-            print("Неправильная команда")
         rock_paper_scissors(user_choice)
     elif (command == 2):
         hidden_number = rnd.randint(1, 1001)
+        
         while True:
-            while True:
-                try:
-                    user_number = int(input("Введите число: "))
-
-                    if(user_number > 0):
-                        break
-
-                    print("Загадонное число больше 0")
-                except:
-                    print("Это не число")
+            user_number = get_user_number()
 
             if(guess_number(user_number, hidden_number)):
                 print(f"Ты угадал это число {hidden_number}")

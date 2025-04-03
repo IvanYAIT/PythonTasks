@@ -9,8 +9,12 @@ def positive():
 def negative():
     print("Отрицательное")
 
+@check_input
+def get_user_number():
+    return int(input("Введите число: "))
+
 def test():
-    user_number = get_user_any_number("int")
+    user_number = get_user_number()
     
     if(user_number >= 0):
         positive()

@@ -26,30 +26,36 @@ def min_number(number):
     
     return result
 
-user_number = get_user_positive_number("int")
+@check_input
+def get_user_number():
+    user_number = int(input("Введите число: "))
 
-user_input = ""
+    if(user_number <= 0):
+        raise ValueError
+    
+    return user_number
+
+@check_input
+def get_command():
+    user_input = input()
+    if(user_input  == "exit"):
+        return user_input
+
+    command = int(user_input)
+    if(command < 1 or command > 3):
+        raise ValueError
+
+    return command
+
+user_number = get_user_number()
 while True:
     print("Введите номер действия: \n",
         "1 - сумма цифр \n",
         "2 - максимальная цифра \n",
         "3 - минимальная цифра")
 
-    while True:
-        try:
-            user_input = input()
-            if(user_input  == "exit"):
-                break
-
-            command = int(user_input)
-            if(command >= 1 and command <= 3):
-                break
-
-            print("Введен неправильная команда")
-        except:
-            print("Это не число")
-
-    if(user_input == "exit"):
+    command = get_command()
+    if(str(command).lower() == "exit"):
         break
 
     if (command == 1):

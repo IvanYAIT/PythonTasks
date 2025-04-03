@@ -1,33 +1,37 @@
+import os, sys
+sys.path.insert(1, os.path.join(sys.path[0], '../Services'))
+
+from UserInput import *
+
+@check_input
+def get_user_number():
+    number = input("Какую цифру ищем? ")
+    if(not number.isnumeric()):
+        raise ValueError()
+            
+    if(len(number) != 1):
+        raise 
+
+    if(int(number) < 0):
+        raise
+    
+    return number
+
+@check_input
+def get_user_letter():
+    letter = input("Какую букву ищём? ")
+    if(letter.isnumeric()):
+        raise ValueError()
+    
+    if(len(letter) != 1):
+        raise
+
+    return letter
+
 def count_letters(text):
-    while True:
-        try:
-            number = input("Какую цифру ищем? ")
-            if(not number.isnumeric()):
-                raise ValueError()
-            
-            if(len(number) != 1):
-                raise 
+    number = get_user_number()
+    letter = get_user_letter()
 
-            if(int(number) >= 0):
-                break
-
-            print("Цифра должно быть больше 0")
-        except:
-            print("Это не цифра")
-    
-    while True:
-        try:
-            letter = input("Какую букву ищём? ")
-            if(number.isnumeric()):
-                raise ValueError()
-            
-            print("Это не буква")
-        except:
-            if(len(letter) == 1):
-                break
-
-            print("Это не буква")
-    
     number_count = 0
     letter_count = 0
 
