@@ -1,4 +1,3 @@
-@staticmethod
 def check_input(func):
     def check():
         while True:
