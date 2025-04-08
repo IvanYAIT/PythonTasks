@@ -6,6 +6,7 @@ from Task5.Task5 import Task5
 from Task6.Task6 import Task6
 from Task7.Task7 import Task7
 from Task8.Task8 import Task8
+from Task9.Task9 import Task9
 
 #Task1.main()
 #Task2.main()
@@ -14,4 +15,5 @@ from Task8.Task8 import Task8
 #Task5.main()
 #Task6.main()
 #Task7.main()
-Task8.main()
+#Task8.main()
+Task9.main()
