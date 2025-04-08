@@ -1,10 +1,7 @@
-import os, sys
-sys.path.insert(1, os.path.join(sys.path[0], '../Services'))
-
-from UserInput import *
+from services.user_input import call_until_valid_input
 
 class Task2:
-    @check_input
+    @call_until_valid_input
     def get_user_number():
         user_number = int(input("Введите число: "))
 
