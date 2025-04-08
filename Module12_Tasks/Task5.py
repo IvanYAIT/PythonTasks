@@ -1,10 +1,7 @@
 import random as rnd
-import os, sys
-sys.path.insert(1, os.path.join(sys.path[0], '../Services'))
+from services.user_input import call_until_valid_input
 
-from UserInput import *
-
-@check_input
+@call_until_valid_input
 def get_command():
     user_input = input()
     if(user_input.lower() == "exit" or user_input.lower() == "выход"):
@@ -16,7 +13,7 @@ def get_command():
 
     return command
 
-@check_input
+@call_until_valid_input
 def get_user_choice():
     user_choice = input("Выберите камень, ножницы или бумагу: ")
 
@@ -25,7 +22,7 @@ def get_user_choice():
     
     return user_choice
 
-@check_input
+@call_until_valid_input
 def get_user_number():
     user_number = int(input("Введите число: "))
 

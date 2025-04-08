@@ -1,7 +1,4 @@
-import os, sys
-sys.path.insert(1, os.path.join(sys.path[0], '../Services'))
-
-from UserInput import *
+from services.user_input import call_until_valid_input
 
 def sum_0f_numbers(number):
     result = 0
@@ -26,7 +23,7 @@ def min_number(number):
     
     return result
 
-@check_input
+@call_until_valid_input
 def get_user_number():
     user_number = int(input("Введите число: "))
 
@@ -35,7 +32,7 @@ def get_user_number():
     
     return user_number
 
-@check_input
+@call_until_valid_input
 def get_command():
     user_input = input()
     if(user_input  == "exit"):

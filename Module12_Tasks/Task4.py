@@ -1,9 +1,6 @@
-import os, sys
-sys.path.insert(1, os.path.join(sys.path[0], '../Services'))
+from services.user_input import call_until_valid_input
 
-from UserInput import *
-
-@check_input
+@call_until_valid_input
 def get_user_number():
     number = input("Какую цифру ищем? ")
     if(not number.isnumeric()):
@@ -17,7 +14,7 @@ def get_user_number():
     
     return number
 
-@check_input
+@call_until_valid_input
 def get_user_letter():
     letter = input("Какую букву ищём? ")
     if(letter.isnumeric()):
