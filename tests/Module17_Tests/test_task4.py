@@ -7,4 +7,4 @@ def test_copy_string():
 
 def test_reverse_string():
     string = 'abcdefg'
-    assert id(Task4.reverse_string(string)) != id(string)
+    assert Task4.reverse_string(string) == 'gfedcba'
