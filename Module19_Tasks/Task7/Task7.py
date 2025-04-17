@@ -37,5 +37,8 @@ class Task7:
         same_num_set = cls.get_same_numbers_in_array_using_set(array1, array2, array3)
         different_num = cls.get_different_numbers_in_arrays(array1, array2, array3)
         different_num_set = cls.get_different_numbers_in_arrays_using_set(array1, array2, array3)
-        print(same_num, same_num_set)
-        print(different_num, different_num_set)
+        print("Задача 1:")
+        print(f"- Решение без множеств: {same_num}", f"\n- Решение c множеств: {same_num_set}")
+        print("\nЗадача 2:")
+        print(f"- Решение без множеств: {different_num}", f"\n- Решение c множеств: {different_num_set}")
+        
