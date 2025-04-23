@@ -15,7 +15,7 @@ class Task2:
     
     def print_text_backwars(self, text):
         for line in text[::-1]:
-            print(line)
+            print(line.strip())
     
     def main(self):
         text = self.get_text_from_file()
