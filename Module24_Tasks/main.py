@@ -3,6 +3,7 @@ from Task2.Task2 import Student
 from Task3.Task3 import Child, Parent
 from Task4.Task4 import *
 from Task5.Task5 import House, Human, Challenge
+from Task6.Task6 import Game, Board, Player
 
 def print_warriors_fight():
     warrior1 = Warrior(100, 15)
@@ -82,8 +83,16 @@ def test_challenge():
     challenge1.start()
     challenge2.start()
 
+def play_tic_tac_toe():
+    board = Board()
+    player1 = Player('Player1')
+    player2 = Player('Player2')
+    game = Game(board, player1, player2)
+    game.start()
+
 #print_warriors_fight()
 #print_students()
 #print_parents_info()
 #print_elements()
-test_challenge()
+#test_challenge()
+play_tic_tac_toe()
