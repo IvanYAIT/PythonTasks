@@ -1,5 +1,6 @@
 from Task1.Task1 import Warrior, Arena
 from Task2.Task2 import Student
+from Task3.Task3 import Child, Parent
 
 
 def print_warriors_fight():
@@ -39,5 +40,22 @@ def print_students():
     for student in students:
         print(f"Студент {student.full_name}, средняя оценка: {student.get_average_mark()}")
 
-print_warriors_fight()
-print_students()
+def print_parents_info():
+    child1 = Child('Ivan', 5)
+    child2 = Child('Sasha', 11)
+    child3 = Child('Kirill', 8)
+    parent1 = Parent('Igor', 32, child1)
+    parent2 = Parent('Daria', 42, child2, child3)
+
+    parent1.get_info()
+    parent1.feed_childrens()
+    parent1.calm_childrens()
+    parent2.get_info()
+    parent2.feed_childrens()
+    parent2.calm_childrens()
+    parent1.feed_childrens()
+    parent2.calm_childrens()
+
+#print_warriors_fight()
+#print_students()
+print_parents_info()
