@@ -4,6 +4,7 @@ from Task3.Task3 import Child, Parent
 from Task4.Task4 import *
 from Task5.Task5 import House, Human, Challenge
 from Task6.Task6 import Game, Board, Player
+from Task7.Task7 import Matrix
 
 def print_warriors_fight():
     warrior1 = Warrior(100, 15)
@@ -90,9 +91,30 @@ def play_tic_tac_toe():
     game = Game(board, player1, player2)
     game.start()
 
+def print_matrix():
+    m1 = Matrix(2, 3)
+    m1.data = [[1, 2, 3], [4, 5, 6]]
+    m2 = Matrix(2, 3)
+    m2.data = [[7, 8, 9], [10, 11, 12]]
+    m3 = Matrix(2, 3)
+    m3.data = [[12, 13, 14], [15, 16, 17]]
+
+    m1.add(m2)
+    m1.print_matrix()
+    print('------------------------------')
+    m2.substract(m3)
+    m2.print_matrix()
+    print('------------------------------')
+    m3.multiply(m1)
+    m3.print_matrix()
+    print('------------------------------')
+    m1.transpositions()
+    m1.print_matrix()
+
 #print_warriors_fight()
 #print_students()
 #print_parents_info()
 #print_elements()
 #test_challenge()
-play_tic_tac_toe()
+#play_tic_tac_toe()
+print_matrix()
