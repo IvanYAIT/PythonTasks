@@ -4,7 +4,10 @@ def call_until_valid_input(func):
             try:
                 number = func(*args, **kwargs)
                 break
-            except:
-                print("Введены неверные данные")
+            except Exception as e:
+                if(len(e.args) >=1):
+                    print(e.args[0])
+                else:
+                    print("Введены неверные данные")
         return number
     return check
