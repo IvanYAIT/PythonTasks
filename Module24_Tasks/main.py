@@ -2,6 +2,7 @@ from Task1.Task1 import Warrior, Arena
 from Task2.Task2 import Student
 from Task3.Task3 import Child, Parent
 from Task4.Task4 import *
+from Task5.Task5 import House, Human, Challenge
 
 def print_warriors_fight():
     warrior1 = Warrior(100, 15)
@@ -72,7 +73,17 @@ def print_elements():
     print(element3.element_type.name)
     print(element4.element_type.name)
 
+def test_challenge():
+    house = House()
+    human1 = Human('Human1', house)
+    human2 = Human('Human2', house)
+    challenge1 = Challenge(human1)
+    challenge2 = Challenge(human2)
+    challenge1.start()
+    challenge2.start()
+
 #print_warriors_fight()
 #print_students()
 #print_parents_info()
-print_elements()
+#print_elements()
+test_challenge()
