@@ -1,7 +1,7 @@
 from Task1.Task1 import Warrior, Arena
 from Task2.Task2 import Student
 from Task3.Task3 import Child, Parent
-
+from Task4.Task4 import *
 
 def print_warriors_fight():
     warrior1 = Warrior(100, 15)
@@ -56,6 +56,23 @@ def print_parents_info():
     parent1.feed_childrens()
     parent2.calm_childrens()
 
+def print_elements():
+    fire = Fire()
+    water = Water()
+    air = Air()
+    earth = Earth()
+
+    element1 = fire + water
+    element2 = air + water
+    element3 = earth + air
+    element4 = fire + element1
+
+    print(element1.element_type.name)
+    print(element2.element_type.name)
+    print(element3.element_type.name)
+    print(element4.element_type.name)
+
 #print_warriors_fight()
 #print_students()
-print_parents_info()
+#print_parents_info()
+print_elements()
