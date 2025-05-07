@@ -1,4 +1,5 @@
 from Task1.Task1 import Task1
+from Task2.Task2 import Task2
 
 def print_sequences():
     task1 =Task1()
@@ -15,4 +16,10 @@ def print_sequences():
 
     print(f'1: {sequence1}\n', f'2: {sequence2}\n', f'3: {sequence3}')
 
-print_sequences()
+def print_pathes():
+    PATH = 'C:\\Users\\Якушик И_А\\Documents\\work\\PythonTasks'
+    task2 = Task2()
+    task2.gen_files_path(PATH)
+
+#print_sequences()
+print_pathes()
