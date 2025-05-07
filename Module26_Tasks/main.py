@@ -1,6 +1,7 @@
 from Task1.Task1 import Task1
 from Task2.Task2 import Task2
 from Task3.Task3 import Task3
+from Task4.Task4 import LinkedList
 
 def print_sequences():
     task1 =Task1()
@@ -28,6 +29,17 @@ def print_line_amount():
     amount = task3.count_lines_in_py_file(PATH)
     print(f'Строк кода в модули 26 сейчас: {amount}')
 
+def print_linked_list():
+    linked_list = LinkedList(1, 2, 3)
+    linked_list.append(20)
+    print(f'Второй элемент: {linked_list.get(2)}')
+    linked_list.remove(2)
+    print('Второй элемент удален')
+    print('Весь список: ')
+    for num in linked_list:
+        print(num)
+
 #print_sequences()
 #print_pathes()
-print_line_amount()
+#print_line_amount()
+print_linked_list()
