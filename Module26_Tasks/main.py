@@ -2,6 +2,7 @@ from Task1.Task1 import Task1
 from Task2.Task2 import Task2
 from Task3.Task3 import Task3
 from Task4.Task4 import LinkedList
+from Task5.Task5 import Task5
 
 def print_sequences():
     task1 =Task1()
@@ -39,7 +40,16 @@ def print_linked_list():
     for num in linked_list:
         print(num)
 
+def print_errors():
+    PATH = 'C:\\Users\\Якушик И_А\\Documents\\work\\PythonTasks\\Module26_Tasks\\Task5\\logs.log'
+    task5 = Task5()
+    errors = task5.get_errors(PATH)
+    for error in errors:
+        error = error.strip()
+        print(error)
+
 #print_sequences()
 #print_pathes()
 #print_line_amount()
-print_linked_list()
+#print_linked_list()
+print_errors()
