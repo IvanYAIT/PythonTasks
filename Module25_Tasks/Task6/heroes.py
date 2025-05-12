@@ -1,4 +1,3 @@
-import random
 from monsters import MonsterBerserk, MonsterHunter
  
 class Hero:
@@ -64,26 +63,29 @@ class Hero:
  
  
 class Healer(Hero):
-    def init(self, name, max_health, max_power):
-        super().init(name, max_health, max_power)
-        self.__mag_power = self.__power * 3
+    def __init__(self, name):
+        super().__init__(name)
+        self.__mag_power = self.get_power() * 3
 
     def attack(self, enemy):
-        enemy.receive_damage(self.__power / 2)
+        enemy.take_damage(self.get_power() / 2)
+        print(f'{self.name} атакует {enemy.name} на {round(self.get_power() / 2, 2)}')
 
     def receive_damage(self, damage):
-        super().receive_damage(damage * 1.2)
+        super().take_damage(damage * 1.2)
+        return(f'{self.name} получает {damage * 1.2} урона, осталось здоровья {self.get_hp()}')
 
     def heal(self, target):
-        target.receive_healing(self.__mag_power)
+        target.set_hp(target.get_hp() + self.__mag_power)
+        print(f'{self.name} лечит {target.name} на {self.__mag_power}')
 
     def find_weakest_ally(self, allies):
         weakest = None
         for ally in allies:
-            if ally.max_hp == ally.__hp:
+            if ally.max_hp == ally.get_hp():
                 continue
             if weakest:
-                if weakest.__hp > ally.__hp:
+                if weakest.get_hp() > ally.get_hp():
                     weakest = ally
                     continue
             else:
@@ -98,16 +100,19 @@ class Healer(Hero):
         return enemy
     
     def choose_action(self, allies, enemies):
-        if self.__health <= 0:
+        if self.get_hp() <= 0:
             return
-        target = self.__find_weakest_ally(allies)
+        target = self.find_weakest_ally(allies)
         if target:
             self.heal(target)
         else:
-            target = self.__find_strongest_enemy(enemies)
+            target = self.find_strongest_enemy(enemies)
             if target:
                 self.attack(target)
- 
+    
+    def make_a_move(self, friends, enemies):
+        super().make_a_move(friends, enemies)
+        self.choose_action(friends, enemies)
     # Целитель:
     # Атрибуты:
     # - магическая сила - равна значению НАЧАЛЬНОГО показателя силы умноженному на 3 (self.__power * 3)
@@ -120,51 +125,58 @@ class Healer(Hero):
  
  
 class Tank(Hero):
-    def init(self, name, max_health, max_power):
-        super().init(name, max_health, max_power)
+    def __init__(self, name):
+        super().__init__(name)
         self.__defense = 1
         self.__is_shield_up = False
  
-        def attack(self, enemy):
-            damage = self.__power / 2
-            enemy.receive_damage(damage)
- 
-        def receive_damage(self, damage):
-            damage /= self.__defense
-            super().receive_damage(damage)
- 
-        def raise_shield(self):
-            if not self.__is_shield_up:
-                self.__is_shield_up = True
-                self.__power /= 2
-                self.__defense *= 2
- 
-        def lower_shield(self):
-            if self.__is_shield_up:
-                self.__is_shield_up = False
-                self.__power *= 2
-                self.__defense /= 2
+    def attack(self, enemy):
+        damage = self.get_power() / 2
+        enemy.take_damage(damage)
+        print(f'{self.name} атакует {enemy.name} на {round(damage, 2)}')
 
-        def find_closest_enemy(self, enemies):
-            closest = enemies[0]
-            for enemy in enemies:
-                if isinstance(enemy, MonsterBerserk):
-                    closest = enemy
-                    return closest
-            return closest
+    def receive_damage(self, damage):
+        damage /= self.__defense
+        super().take_damage(damage)
+        return(f'{self.name} получает {damage} урона, осталось здоровья {self.get_hp()}')
 
-        def choose_action(self, allies, enemies):
-            if self.__health <= 0:
-                return
-            if self.__is_shield_up:
-                self.lower_shield()
+    def raise_shield(self):
+        if not self.__is_shield_up:
+            self.__is_shield_up = True
+            self.set_power(self.get_power() / 2) 
+            self.__defense *= 2
+            print(f'{self.name} поднял щит')
+
+    def lower_shield(self):
+        if self.__is_shield_up:
+            self.__is_shield_up = False
+            self.set_power(self.get_power() * 2) 
+            self.__defense /= 2
+            print(f'{self.name} опустил щит')
+
+    def find_closest_enemy(self, enemies):
+        closest = enemies[0]
+        for enemy in enemies:
+            if isinstance(enemy, MonsterBerserk):
+                closest = enemy
+                return closest
+        return closest
+    
+    def choose_action(self, allies, enemies):
+        if self.get_hp() <= 0:
+            return
+        if self.__is_shield_up:
+            self.lower_shield()
+        else:
+            target = self.find_closest_enemy(enemies)
+            if target:
+                self.attack(target)
             else:
-                target = self.__find_closest_enemy(enemies)
-                if target:
-                    self.attack(target)
-                else:
-                    self.raise_shield()
- 
+                self.raise_shield()
+    
+    def make_a_move(self, friends, enemies):
+        super().make_a_move(friends, enemies)
+        self.choose_action(friends, enemies)
     # Танк:
     # Атрибуты:
     # - показатель защиты - изначально равен 1, может увеличиваться и уменьшаться
@@ -178,61 +190,57 @@ class Tank(Hero):
     # поднять щит/опустить щит) на выбранную им цель
  
 class Attacker(Hero):
-    def init(self, name, max_health, max_power):
-        super().init(name, max_health, max_power)
+    def __init__(self, name):
+        super().__init__(name)
         self.__power_multiply = 2
+        self.is_powered = False
  
-        def attack(self, enemy):
-            damage = self.__power * self.__power_multiply
-            enemy.receive_damage(damage)
-            self.power_down()
- 
-        def receive_damage(self, damage):
-            damage *= self.__power_multiply / 2
-            super().receive_damage(damage)
- 
-        def power_up(self):
-            self.__power_multiply *= 2
- 
-        def power_down(self):
-            self.__power_multiply /= 2
+    def attack(self, enemy):
+        damage = self.get_power() * self.__power_multiply
+        enemy.take_damage(damage)
+        self.power_down()
+        print(f'{self.name} атакует {enemy.name} на {round(damage, 2)}')
 
-        def find_weakest_enemy(self, enemies):
-            weakest = enemies[0]
-            for enemy in enemies:
-                if isinstance(enemy, MonsterHunter):
-                    weakest = enemy
-                    return weakest
-                if weakest.get_hp() > enemy.get_hp():
-                    weakest = enemy
-            return weakest
+    def receive_damage(self, damage):
+        damage *= self.__power_multiply / 2
+        super().take_damage(damage)
+        return(f'{self.name} получает {damage} урона, осталось здоровья {self.get_hp()}')
 
-        def find_most_damaged_ally(self, allies):
-            damaged = None
-            for ally in allies:
-                if ally.max_hp == ally.__hp:
-                    continue
-                if damaged:
-                    if damaged.__hp > ally.__hp:
-                        damaged = ally
-                        continue
-                else:
-                    damaged = ally
-            return damaged
+    def power_up(self):
+        self.__power_multiply *= 2
+        self.is_powered = True
+        print(f'{self.name} усилился')
 
-        def choose_action(self, allies, enemies):
-            if self.__health <= 0:
-                return
-            target = self.__find_weakest_enemy(enemies)
-            if target:
-                self.attack(target)
-            else:
-                target = self.__find_most_damaged_ally(allies)
-                if target:
-                    self.power_up()
-                    self.heal(target)
-                    self.power_down()
- 
+    def power_down(self):
+        self.__power_multiply /= 2
+        self.is_powered = False
+        print(f'{self.name} ослабился')
+
+    def find_weakest_enemy(self, enemies):
+        weakest = enemies[0]
+        for enemy in enemies:
+            if isinstance(enemy, MonsterHunter):
+                weakest = enemy
+                return weakest
+            if weakest.get_hp() > enemy.get_hp():
+                weakest = enemy
+        return weakest
+    
+    def choose_action(self, allies, enemies):
+        if self.get_hp() <= 0:
+            return
+        
+        if not self.is_powered:
+            self.power_up()
+            return
+        
+        target = self.find_weakest_enemy(enemies)
+        if target:
+            self.attack(target)
+
+    def make_a_move(self, friends, enemies):
+        super().make_a_move(friends, enemies)
+        self.choose_action(friends, enemies)
     # Убийца:
     # Атрибуты:
     # - коэффициент усиления урона (входящего и исходящего)
