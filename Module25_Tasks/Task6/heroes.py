@@ -67,13 +67,13 @@ class Healer(Hero):
         super().__init__(name)
         self.__mag_power = self.get_power() * 3
 
-    def attack(self, enemy):
-        enemy.take_damage(self.get_power() / 2)
-        print(f'{self.name} атакует {enemy.name} на {round(self.get_power() / 2, 2)}')
+    def attack(self, target):
+        target.take_damage(self.get_power() / 2)
+        print(f'{self.name} атакует {target.name} на {round(self.get_power() / 2, 2)}')
 
     def receive_damage(self, damage):
         super().take_damage(damage * 1.2)
-        return(f'{self.name} получает {damage * 1.2} урона, осталось здоровья {self.get_hp()}')
+        print(f'{self.name} получает {damage * 1.2} урона, осталось здоровья {self.get_hp()}')
 
     def heal(self, target):
         target.set_hp(target.get_hp() + self.__mag_power)
@@ -97,7 +97,7 @@ class Healer(Hero):
         for enemy in enemies:
             if strongest.get_hp() > enemy.get_hp():
                 strongest = enemy
-        return enemy
+        return strongest
     
     def choose_action(self, allies, enemies):
         if self.get_hp() <= 0:
@@ -130,15 +130,15 @@ class Tank(Hero):
         self.__defense = 1
         self.__is_shield_up = False
  
-    def attack(self, enemy):
+    def attack(self, target):
         damage = self.get_power() / 2
-        enemy.take_damage(damage)
-        print(f'{self.name} атакует {enemy.name} на {round(damage, 2)}')
+        target.take_damage(damage)
+        print(f'{self.name} атакует {target.name} на {round(damage, 2)}')
 
     def receive_damage(self, damage):
         damage /= self.__defense
         super().take_damage(damage)
-        return(f'{self.name} получает {damage} урона, осталось здоровья {self.get_hp()}')
+        print(f'{self.name} получает {damage} урона, осталось здоровья {self.get_hp()}')
 
     def raise_shield(self):
         if not self.__is_shield_up:
@@ -195,16 +195,16 @@ class Attacker(Hero):
         self.__power_multiply = 2
         self.is_powered = False
  
-    def attack(self, enemy):
+    def attack(self, target):
         damage = self.get_power() * self.__power_multiply
-        enemy.take_damage(damage)
+        target.take_damage(damage)
         self.power_down()
-        print(f'{self.name} атакует {enemy.name} на {round(damage, 2)}')
+        print(f'{self.name} атакует {target.name} на {round(damage, 2)}')
 
     def receive_damage(self, damage):
         damage *= self.__power_multiply / 2
         super().take_damage(damage)
-        return(f'{self.name} получает {damage} урона, осталось здоровья {self.get_hp()}')
+        print(f'{self.name} получает {damage} урона, осталось здоровья {self.get_hp()}')
 
     def power_up(self):
         self.__power_multiply *= 2
