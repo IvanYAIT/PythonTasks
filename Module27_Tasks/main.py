@@ -2,6 +2,7 @@ from Task1.task1 import Task1
 from Task2.task2 import Task2
 from Task3.task3 import Task3
 from Task4.task4 import Task4
+from Task5.task5 import Task5
 
 def test_decorator():
     task1 = Task1()
@@ -26,7 +27,15 @@ def count_fibanachi_number():
     print(number2)
     print(number3)
 
+def count_calls():
+    task5 = Task5()
+    task5.main()
+    task5.main()
+    task5.main()
+    task5.main()
+
 #test_decorator()
 #test_delayed_func()
 #test_logging_decorator()
-count_fibanachi_number()
+#count_fibanachi_number()
+count_calls()
