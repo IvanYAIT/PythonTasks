@@ -1,6 +1,7 @@
 from Task1.task1 import User, PermissionType
 from Task2.task2 import Task2
 from Task3.task3 import Task3Child
+from Task4.task4 import Task4
 
 def user_actions():
     user = User()
@@ -22,6 +23,11 @@ def print_logs():
     task3.test_func1()
     task3.test_func2()
 
+def decorate_the_world():
+    task4 = Task4()
+    task4.decorated_func('User', 101)
+
 #user_actions()
 #check_callback_func()
-print_logs()
+#print_logs()
+decorate_the_world()
