@@ -1,5 +1,6 @@
 from Task1.task1 import Task1
 from Task2.task2 import MyMath
+from Task3.task3 import Date
 
 def write_to_file():
     path = 'C:\\Users\\Якушик И_А\\Documents\\work\\PythonTasks\\Module28_Tasks\\Task1\\file.txt'
@@ -14,5 +15,12 @@ def math_class():
     cube_volume = math.count_volume_of_cube(3)
     print(f'{lenght} {circle_area} {sphere_surface_area} {cube_volume}')
 
+def print_date():
+    date = Date.from_string('20-03-2056')
+    print(date)
+    print(Date.is_valid('14-11-1045'))
+    print(Date.is_valid('23-13-2077'))
+
 #write_to_file()
-math_class()
+#math_class()
+print_date()
