@@ -2,6 +2,7 @@ from Task1.task1 import User, PermissionType
 from Task2.task2 import Task2
 from Task3.task3 import Task3Child
 from Task4.task4 import Task4
+from Task5.task5 import Task5
 
 def user_actions():
     user = User()
@@ -27,7 +28,15 @@ def decorate_the_world():
     task4 = Task4()
     task4.decorated_func('User', 101)
 
+def check_singelton():
+    task5 = Task5()
+    another_task5 = Task5()
+    print(id(task5))
+    print(id(another_task5))
+    print(task5 is another_task5)
+
 #user_actions()
 #check_callback_func()
 #print_logs()
-decorate_the_world()
+#decorate_the_world()
+check_singelton()
